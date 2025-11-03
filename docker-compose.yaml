@@ -1,0 +1,23 @@
+services:
+  postgres:
+    image: postgres:17
+    container_name: postgres-sour
+    environment:
+      POSTGRES_USER: lemon-sour
+      POSTGRES_PASSWORD: yopatteru
+      POSTGRES_DB: development
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -p 5432 -U lemon-sour -d development"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+      start_period: 5s
+
+volumes:
+  postgres_data:
+  rsa_keys:
