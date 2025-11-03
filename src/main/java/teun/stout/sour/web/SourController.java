@@ -1,15 +1,23 @@
 package teun.stout.sour.web;
 
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.media.ArraySchema;
+import io.swagger.v3.oas.annotations.media.Content;
+import io.swagger.v3.oas.annotations.media.Schema;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
 import teun.stout.sour.CreateSourRequest;
+import teun.stout.sour.GetSourRequestParams;
 import teun.stout.sour.SourModel;
 import teun.stout.sour.SourService;
+import teun.stout.sour.common.ApiError;
+
+import java.util.List;
 
 @RestController
-@RequestMapping(path = "v1/sours")
+@RequestMapping(path = "/v1/sours")
 class SourController {
 
     private final SourService sourService;
@@ -18,9 +26,88 @@ class SourController {
         this.sourService = sourService;
     }
 
-    @PostMapping("/sour/rating")
-    SourModel createSourRating(@RequestBody CreateSourRequest createSourRequest) {
-        return sourService.createSourRating(createSourRequest);
+    @GetMapping("/{id}")
+    @Operation(summary = "Get a lemon sour by id")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Lemon sour by id",
+            content = @Content(
+                    schema = @Schema(implementation = SourModel.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "Sour is not found",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ApiError.class)
+            )
+    )
+    ResponseEntity<SourModel> getSourById(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(sourService.getSourById(id));
+    }
+
+    @GetMapping
+    @Operation(summary = "Get all sours with optional filters")
+    @ApiResponse(
+            responseCode = "200",
+            description = "List of sours matching the filters",
+            content = @Content(
+                    mediaType = "application/json",
+                    array = @ArraySchema(schema = @Schema(implementation = SourModel.class))
+            )
+    )
+    @ApiResponse(
+            responseCode = "400",
+            description = "Invalid filter parameters",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ApiError.class)
+            )
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "No sours found",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ApiError.class)
+            )
+    )
+    ResponseEntity<List<SourModel>> getSours(@ModelAttribute GetSourRequestParams params) {
+        return ResponseEntity.ok(sourService.getSours(params));
+    }
+
+    @PostMapping("/sour")
+    @Operation(summary = "Create a sour")
+    @ApiResponse(
+            responseCode = "201",
+            description = "Sour created",
+            content = @Content(
+                    schema = @Schema(implementation = SourModel.class)
+            )
+    )
+    ResponseEntity<SourModel> createSour(@RequestBody CreateSourRequest createSourRequest) {
+        return ResponseEntity
+                .status(HttpStatus.CREATED)
+                .body(sourService.createSour(createSourRequest));
+    }
+
+    @PostMapping("/{id}")
+    @Operation(summary = "Delete a sour")
+    @ApiResponse(
+            responseCode = "200",
+            description = "Sour created"
+    )
+    @ApiResponse(
+            responseCode = "404",
+            description = "No sours found",
+            content = @Content(
+                    mediaType = "application/json",
+                    schema = @Schema(implementation = ApiError.class)
+            )
+    )
+    ResponseEntity<Void> createSour(@PathVariable("id") Integer id) {
+        return ResponseEntity.ok(null);
     }
 
 }
