@@ -11,8 +11,8 @@ class SourServiceImpl implements SourService {
         this.sourRepository = sourRepository;
     }
 
-    public SourModel createSourRating() {
-        return sourRepository.createSourRating();
+    public SourModel createSourRating(CreateSourRequest createSourRequest) {
+        return sourRepository.createSourRating(createSourRequest);
     }
 
 }

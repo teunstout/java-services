@@ -7,5 +7,5 @@ public interface SourService {
      *
      * @return created Sour
      */
-    public SourModel createSourRating();
+    public SourModel createSourRating(CreateSourRequest createSourRequest);
 }

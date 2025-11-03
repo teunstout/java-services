@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
+import teun.stout.sour.CreateSourRequest;
 import teun.stout.sour.SourModel;
 import teun.stout.sour.SourService;
 
@@ -18,8 +19,8 @@ class SourController {
     }
 
     @PostMapping("/sour/rating")
-    SourModel createSourRating(@RequestBody SourModel sourModel) {
-        return sourService.createSourRating();
+    SourModel createSourRating(@RequestBody CreateSourRequest createSourRequest) {
+        return sourService.createSourRating(createSourRequest);
     }
 
 }
