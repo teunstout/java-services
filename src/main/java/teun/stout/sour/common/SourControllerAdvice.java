@@ -12,6 +12,13 @@ import java.util.Map;
 @ControllerAdvice
 public class SourControllerAdvice {
 
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<ApiError> handleDefault(Exception e) {
+        return ResponseEntity
+                .status(HttpStatus.INTERNAL_SERVER_ERROR)
+                .body(ApiError.of(HttpStatus.INTERNAL_SERVER_ERROR, "Internal Server Error"));
+    }
+
     @ExceptionHandler(SourNotFoundException.class)
     public ResponseEntity<ApiError> handleUserNotFound(SourNotFoundException ex) {
         return ResponseEntity
@@ -21,6 +28,7 @@ public class SourControllerAdvice {
 
     @ExceptionHandler(SourParamException.class)
     public ResponseEntity<ApiError> handleSourParamException(SourNotFoundException ex) {
+
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ApiError.of(HttpStatus.BAD_REQUEST, ex.getMessage()));
