@@ -37,6 +37,6 @@ class SourServiceImpl implements SourService {
 
     @Override
     public void deleteSourById(Integer id) {
-        // TODO: implement
+        sourRepository.deleteById(id);
     }
 }
