@@ -19,8 +19,10 @@ repositories {
 }
 
 ext {
-    set('springModulithVersion', "2.0.0-RC1")
-    set('springMicrometer', "1.15.5")
+    set('springModulithVersion', '2.0.0-RC1')
+    set('springMicrometerVersion', '1.15.5')
+    set('webmvcVersion', '3.0.0-M1')
+    set('logbackVersion', '9.0')
 }
 
 dependencies {
@@ -29,7 +31,8 @@ dependencies {
     implementation 'org.springframework.boot:spring-boot-starter-actuator'
     implementation 'io.micrometer:micrometer-registry-prometheus'
     implementation 'org.springframework.boot:spring-boot-starter-data-jdbc'
-    implementation 'org.springdoc:springdoc-openapi-starter-webmvc-ui:3.0.0-M1'
+    implementation "org.springdoc:springdoc-openapi-starter-webmvc-ui:${webmvcVersion}"
+    implementation "net.logstash.logback:logstash-logback-encoder:${logbackVersion}"
     runtimeOnly 'org.postgresql:postgresql'
     testImplementation 'org.springframework.modulith:spring-modulith-starter-test'
     testImplementation 'org.springframework.boot:spring-boot-starter-test'
@@ -39,7 +42,7 @@ dependencies {
 dependencyManagement {
     imports {
         mavenBom "org.springframework.modulith:spring-modulith-bom:${springModulithVersion}"
-        mavenBom "io.micrometer:micrometer-bom:${springMicrometer}"
+        mavenBom "io.micrometer:micrometer-bom:${springMicrometerVersion}"
     }
 }
 

@@ -96,11 +96,11 @@ class SourController {
                 .body(sourService.createSour(createSourRequest));
     }
 
-    @PostMapping("/{id}")
+    @DeleteMapping("/{id}")
     @Operation(summary = "Delete a sour")
     @ApiResponse(
             responseCode = "200",
-            description = "Sour created"
+            description = "Sour deleted"
     )
     @ApiResponse(
             responseCode = "404",
