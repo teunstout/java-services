@@ -15,12 +15,14 @@ import teun.stout.sour.SourService;
 import teun.stout.sour.common.ApiError;
 
 import java.util.List;
+import java.util.logging.Logger;
 
 @RestController
 @RequestMapping(path = "/v1/sours")
 class SourController {
 
     private final SourService sourService;
+    private final Logger log = Logger.getLogger(SourController.class.getName());
 
     SourController(SourService sourService) {
         this.sourService = sourService;
@@ -87,6 +89,8 @@ class SourController {
             )
     )
     ResponseEntity<SourModel> createSour(@RequestBody CreateSourRequest createSourRequest) {
+        log.info("Create a sour");
+
         return ResponseEntity
                 .status(HttpStatus.CREATED)
                 .body(sourService.createSour(createSourRequest));
@@ -107,6 +111,7 @@ class SourController {
             )
     )
     ResponseEntity<Void> createSour(@PathVariable("id") Integer id) {
+        log.info("Delete sour");
         return ResponseEntity.ok(null);
     }
 
