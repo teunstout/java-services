@@ -1,4 +1,8 @@
-package teun.stout.sour;
+package teun.stout.v1;
+
+import teun.stout.v1.model.CreateSourRequest;
+import teun.stout.v1.model.GetSourRequestParams;
+import teun.stout.v1.model.SourModel;
 
 import java.util.List;
 

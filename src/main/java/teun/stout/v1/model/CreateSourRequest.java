@@ -1,4 +1,4 @@
-package teun.stout.sour;
+package teun.stout.v1.model;
 
 import java.time.LocalDate;
 

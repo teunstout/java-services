@@ -1,4 +1,4 @@
-package teun.stout.sour.common;
+package teun.stout.common;
 
 import org.springframework.http.HttpStatus;
 

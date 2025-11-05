@@ -1,7 +1,7 @@
 services:
   postgres:
     image: postgres:17
-    container_name: postgres-sour
+    container_name: stout-postgres-sour
     environment:
       POSTGRES_USER: lemon-sour
       POSTGRES_PASSWORD: yopatteru

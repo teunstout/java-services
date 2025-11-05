@@ -1,4 +1,4 @@
-package teun.stout.sour.common;
+package teun.stout.common;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -6,10 +6,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import teun.stout.sour.common.exception.SourNotFoundException;
-import teun.stout.sour.common.exception.SourParamException;
-
-import java.util.Map;
+import teun.stout.common.exception.SourNotFoundException;
+import teun.stout.common.exception.SourParamException;
 
 @ControllerAdvice
 public class SourControllerAdvice {

@@ -1,6 +1,6 @@
-package teun.stout.sour;
+package teun.stout.v1.model;
 
-import teun.stout.sour.common.exception.SourParamException;
+import teun.stout.common.exception.SourParamException;
 
 import java.time.LocalDate;
 

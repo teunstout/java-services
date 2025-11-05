@@ -1,4 +1,4 @@
-package teun.stout.sour.web;
+package teun.stout.v1;
 
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.media.ArraySchema;
@@ -8,11 +8,10 @@ import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
-import teun.stout.sour.CreateSourRequest;
-import teun.stout.sour.GetSourRequestParams;
-import teun.stout.sour.SourModel;
-import teun.stout.sour.SourService;
-import teun.stout.sour.common.ApiError;
+import teun.stout.v1.model.CreateSourRequest;
+import teun.stout.v1.model.GetSourRequestParams;
+import teun.stout.common.ApiError;
+import teun.stout.v1.model.SourModel;
 
 import java.util.List;
 import java.util.logging.Logger;

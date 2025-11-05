@@ -1,4 +1,4 @@
-package teun.stout.sour.common.exception;
+package teun.stout.common.exception;
 
 public class SourNotFoundException extends RuntimeException {
 

@@ -1,7 +1,10 @@
-package teun.stout.sour;
+package teun.stout.v1;
 
 import org.springframework.stereotype.Service;
-import teun.stout.sour.common.exception.SourNotFoundException;
+import teun.stout.v1.model.CreateSourRequest;
+import teun.stout.v1.model.GetSourRequestParams;
+import teun.stout.common.exception.SourNotFoundException;
+import teun.stout.v1.model.SourModel;
 
 import java.util.List;
 import java.util.Optional;
