@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
 import teun.stout.common.exception.SourNotFoundException;
 import teun.stout.common.exception.SourParamException;
+import teun.stout.common.exception.UnrecognizedSignatureException;
 
 @ControllerAdvice
 public class SourControllerAdvice {
@@ -43,6 +44,14 @@ public class SourControllerAdvice {
         return ResponseEntity
                 .status(HttpStatus.BAD_REQUEST)
                 .body(ApiError.of(HttpStatus.BAD_REQUEST, ex.getMessage()));
+    }
+
+    @ExceptionHandler(UnrecognizedSignatureException.class)
+    public ResponseEntity<ApiError> handleUnrecognizedSignatureException(UnrecognizedSignatureException ex) {
+        log.warn(ex.getMessage());
+        return ResponseEntity
+                .status(HttpStatus.FORBIDDEN)
+                .body(ApiError.of(HttpStatus.FORBIDDEN, ex.getMessage()));
     }
 
 }

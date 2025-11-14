@@ -17,7 +17,7 @@ import java.util.List;
 import java.util.logging.Logger;
 
 @RestController
-@RequestMapping(path = "/v1/sours")
+@RequestMapping(path = "/{version}/sours", version = "1")
 class SourController {
 
     private final SourService sourService;
@@ -27,7 +27,7 @@ class SourController {
         this.sourService = sourService;
     }
 
-    @GetMapping("/{id}")
+    @GetMapping(value = "/{id}", version = "1")
     @Operation(summary = "Get a lemon sour by id")
     @ApiResponse(
             responseCode = "200",
@@ -48,7 +48,7 @@ class SourController {
         return ResponseEntity.ok(sourService.getSourById(id));
     }
 
-    @GetMapping
+    @GetMapping(value = "/", version = "1")
     @Operation(summary = "Get all sours with optional filters")
     @ApiResponse(
             responseCode = "200",
@@ -78,7 +78,7 @@ class SourController {
         return ResponseEntity.ok(sourService.getSours(params));
     }
 
-    @PostMapping("/sour")
+    @PostMapping(value = "/sour", version = "1")
     @Operation(summary = "Create a sour")
     @ApiResponse(
             responseCode = "201",
@@ -95,7 +95,7 @@ class SourController {
                 .body(sourService.createSour(createSourRequest));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping(value = "/{id}", version = "1")
     @Operation(summary = "Delete a sour")
     @ApiResponse(
             responseCode = "200",
