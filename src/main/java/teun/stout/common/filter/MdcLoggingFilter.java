@@ -1,4 +1,4 @@
-package teun.stout.common.logging;
+package teun.stout.common.filter;
 
 import jakarta.servlet.FilterChain;
 import jakarta.servlet.ServletException;

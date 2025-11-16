@@ -13,7 +13,7 @@ public interface SourService {
      *
      * @param id of the Sour
      * @return A sour model.
-     * @throws teun.stout.sour.common.exception.SourNotFoundException if no sour with the given ID exists
+     * @throws teun.stout.common.exception.SourNotFoundException if no sour with the given ID exists
      */
     public SourModel getSourById(Integer id);
 
@@ -37,7 +37,7 @@ public interface SourService {
      * Delete a sour by id
      *
      * @param id of the Sour
-     * @throws teun.stout.sour.common.exception.SourNotFoundException if no sour with the given ID exists
+     * @throws teun.stout.common.exception.SourNotFoundException if no sour with the given ID exists
      */
     public void deleteSourById(Integer id);
 }
